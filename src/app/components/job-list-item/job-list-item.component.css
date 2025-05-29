@@ -1,41 +1,57 @@
-.job-card {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto 2rem;
-  background-color: #f5faff;
+.job-feed {
+  background-color: #f6f9fb;
   padding: 1.5rem;
   border-radius: 12px;
   border-left: 6px solid #219ebc;
   box-shadow: 0 4px 8px rgba(2, 48, 71, 0.1);
+  min-width: 800px;
+  max-width: 800px;
+  margin: 0 auto 2rem;
   transition: transform 0.2s ease-in-out;
+  min-height: 280px; /* ou plus selon ton contenu */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.job-card:hover {
+.job-feed:hover {
   transform: translateY(-3px);
 }
 
-.job-desc {
+h2 {
   color: #023047;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.job-desc {
+  color: #555;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 
 .job-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 
 .tag {
-  display: inline-block;
   padding: 0.4rem 0.8rem;
-  margin-right: 0.5rem;
   border-radius: 999px;
   font-size: 0.85rem;
-  background-color: #8ecae6;
+  font-weight: 600;
   color: #023047;
 }
 
-.tag.light {
+.tag.type {
   background-color: #ffb703;
-  color: #023047;
+  color: white;
+}
+
+.tag.location {
+  background-color: #8ecae6;
 }
 
 .actions {
@@ -44,14 +60,22 @@
 }
 
 .btn {
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .btn.primary {
+  background-color: #8ecae6;
+  color: white;
+}
+
+.btn.primary :hover {
   background-color: #fb8500;
   color: white;
 }
@@ -59,4 +83,29 @@
 .btn.secondary {
   background-color: #8ecae6;
   color: #023047;
+}
+
+.job-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.tag.type {
+  background-color: #ffb703; /* jaune orangé */
+  color: #023047; /* texte bleu foncé pour contraste */
+}
+
+.tag.location {
+  background-color: #219ebc; /* bleu moyen */
 }

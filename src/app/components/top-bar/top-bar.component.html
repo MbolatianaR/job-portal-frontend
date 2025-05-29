@@ -5,7 +5,7 @@
     </div>
 
     <div class="filters">
-      <input type="text" placeholder="Rechercher un poste..." [(ngModel)]="keyword" (input)="emitFilters()" />
+      <input type="text" placeholder=" Rechercher un poste..." [(ngModel)]="keyword" (input)="emitFilters()" />
       <select [(ngModel)]="selectedType" (change)="emitFilters()">
         <option value="">Type</option>
         <option *ngFor="let type of types" [value]="type">{{ type }}</option>
