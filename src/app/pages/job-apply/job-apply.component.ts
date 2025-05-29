@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Job } from '../../models/job.model';
+import { MOCK_JOBS } from '../../data/jobs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-job-apply',
@@ -8,11 +13,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   standalone : false
 })
 export class JobApplyComponent implements OnInit {
-  applicationForm!: FormGroup;
+  job?: Job;
+  applicationForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private location: Location
+  ) {
     this.applicationForm = this.fb.group({
       firstName: [''],
       lastName: [''],
@@ -23,7 +31,18 @@ export class JobApplyComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    const jobId = Number(this.route.snapshot.paramMap.get('id'));
+    this.job = MOCK_JOBS.find(j => j.id === jobId);
+  }
+
   onSubmit(): void {
-    console.log(this.applicationForm.value);
+    if (this.applicationForm.valid) {
+      console.log('Candidature envoyée :', this.applicationForm.value);
+    }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

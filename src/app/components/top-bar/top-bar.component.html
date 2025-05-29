@@ -1,6 +1,10 @@
 <header class="top-bar">
   <div class="container">
-    <h1>Portail Emploi</h1>
+    <div class="logo">
+      <a routerLink="/" class="logo-text">Job Portal</a>
+    </div>
+
+
     <div class="actions">
       <input type="text" placeholder="Rechercher un poste..." (input)="onSearch($event)" />
       <button type="button" (click)="goToCreate()">+ Créer une offre</button>

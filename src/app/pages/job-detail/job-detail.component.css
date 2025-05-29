@@ -1,3 +1,73 @@
+.job-detail-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
 h2 {
-  color: #3a3a3a;
+  font-size: 1.8rem;
+  color: #023047;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  background-color: #ffb703;
+  color: white;
+  border-radius: 15px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+}
+
+.tag.light {
+  background-color: #8ecae6;
+  color: #023047;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn.primary {
+  background-color: #219ebc;
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: #fb8500;
+}
+
+.btn.secondary {
+  background-color: #eeeeee;
+  color: #023047;
+}
+
+.btn.secondary:hover {
+  background-color: #dcdcdc;
 }

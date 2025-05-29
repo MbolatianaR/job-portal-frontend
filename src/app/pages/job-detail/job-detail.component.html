@@ -1,14 +1,17 @@
-<div *ngIf="job as j">
+<div class="job-detail-container" *ngIf="job as j">
   <h2>{{ j.title }}</h2>
-  <p>{{ j.description }}</p>
-  <p><strong>Type :</strong> {{ j.type }}</p>
-  <p><strong>Lieu :</strong> {{ j.location }}</p>
+  <p class="description">{{ j.description }}</p>
+
+  <div class="tags">
+    <span class="tag">{{ j.type }}</span>
+    <span class="tag light">📍 {{ j.location }}</span>
+    <span class="tag light">💼 {{ j.experienceLevel }}</span>
+  </div>
+
   <p><strong>Salaire :</strong> {{ j.salaryMin }} - {{ j.salaryMax }} €</p>
-  <p><strong>Niveau d'expérience :</strong> {{ j.experienceLevel }}</p>
 
-  <a [routerLink]="['/apply', j.id]">Postuler</a>
-</div>
-
-<div *ngIf="!job">
-  <p>Offre introuvable.</p>
+  <div class="actions">
+    <a [routerLink]="['/apply', j.id]" class="btn primary">Postuler</a>
+    <a routerLink="/" class="btn secondary">Retour à la liste</a>
+  </div>
 </div>

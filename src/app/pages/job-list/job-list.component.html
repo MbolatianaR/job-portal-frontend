@@ -1,10 +1,16 @@
-<div class="job-list">
-  <div *ngFor="let job of filteredJobs" class="job-card">
-    <h3>{{ job.title }}</h3>
-    <p>{{ job.description }}</p>
-    <p><strong>Lieu :</strong> {{ job.location }}</p>
-    <p><strong>Salaire :</strong> {{ job.salaryMin }} - {{ job.salaryMax }} €</p>
-    <a [routerLink]="['/detail', job.id]">Voir les détails</a> |
-    <a [routerLink]="['/apply', job.id]">Postuler</a>
+<div class="job-feed">
+  <div *ngFor="let job of filteredJobs" class="job-preview">
+    <h2>{{ job.title }}</h2>
+    <p class="job-desc">{{ job.description }}</p>
+
+    <div class="job-tags">
+      <span class="tag">{{ job.type }}</span>
+      <span class="tag light">📍 {{ job.location }}</span>
+    </div>
+
+    <div class="actions">
+      <a [routerLink]="['/detail', job.id]" class="btn secondary">Détails</a>
+      <a [routerLink]="['/apply', job.id]" class="btn primary">Postuler</a>
+    </div>
   </div>
 </div>
