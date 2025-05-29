@@ -1,0 +1,22 @@
+<div class="form-container">
+  <h2>Créer une nouvelle offre d’emploi</h2>
+
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+    <input formControlName="title" placeholder="Titre" required />
+    <textarea formControlName="description" placeholder="Description" required></textarea>
+    <input formControlName="location" placeholder="Lieu" required />
+    
+    <select formControlName="type">
+      <option value="CDI">CDI</option>
+      <option value="CDD">CDD</option>
+      <option value="Stage">Stage</option>
+      <option value="Freelance">Freelance</option>
+    </select>
+
+    <input formControlName="salaryMin" type="number" placeholder="Salaire min (€)" required />
+    <input formControlName="salaryMax" type="number" placeholder="Salaire max (€)" required />
+    <input formControlName="experienceLevel" placeholder="Niveau d’expérience" required />
+
+    <button type="submit" [disabled]="jobForm.invalid">Créer l’offre</button>
+  </form>
+</div>
