@@ -3,24 +3,35 @@ import { Job } from '../models/job.model';
 export const MOCK_JOBS: Job[] = [
   {
     id: 1,
-    title: 'Développeur Java',
-    description: 'Développement backend Spring Boot',
+    title: 'Développeur Frontend Angular',
+    description: 'Développement d une application web responsive avec Angular.',
+    type: 'CDI',
     location: 'Paris',
-    type: 'FULL_TIME',
     salaryMin: 35000,
-    salaryMax: 50000,
-    experienceLevel: '2-3 ans',
-    createdAt: '2025-05-25T10:00:00'
+    salaryMax: 45000,
+    experienceLevel: 'Junior',
+    createdAt: ''
   },
   {
     id: 2,
     title: 'Data Analyst',
-    description: 'Analyse de données ESG',
+    description: 'Analyse de données, création de rapports et tableaux de bord.',
+    type: 'CDD',
     location: 'Lyon',
-    type: 'PART_TIME',
-    salaryMin: 28000,
+    salaryMin: 30000,
     salaryMax: 40000,
     experienceLevel: 'Débutant',
-    createdAt: '2025-05-24T09:00:00'
+    createdAt: ''
+  },
+  {
+    id: 3,
+    title: 'Chef de Projet IT',
+    description: 'Gestion de projets techniques, coordination des équipes, suivi client.',
+    type: 'CDI',
+    location: 'Marseille',
+    salaryMin: 45000,
+    salaryMax: 55000,
+    experienceLevel: 'Confirmé',
+    createdAt: ''
   }
 ];

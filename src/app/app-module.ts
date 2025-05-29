@@ -1,25 +1,27 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing-module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { JobDetail } from './pages/job-detail/job-detail';
-import { JobApply } from './pages/job-apply/job-apply';
+
 import { JobListComponent } from './pages/job-list/job-list.component';
+import { JobDetailComponent } from './pages/job-detail/job-detail.component';
+import { JobApplyComponent } from './pages/job-apply/job-apply.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JobDetail,
-    JobApply,
-    JobListComponent
+    JobListComponent,
+    JobDetailComponent,
+    JobApplyComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    RouterModule,
     AppRoutingModule
-  ],
-  providers: [
-    provideBrowserGlobalErrorListeners()
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,12 @@
+<h2>Postuler à un emploi</h2>
+
+<form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+  <input formControlName="firstName" placeholder="Prénom" />
+  <input formControlName="lastName" placeholder="Nom" />
+  <input formControlName="email" type="email" placeholder="Email" />
+  <input formControlName="phone" placeholder="Téléphone" />
+  <textarea formControlName="skills" placeholder="Compétences"></textarea>
+  <textarea formControlName="experiences" placeholder="Expériences"></textarea>
+
+  <button type="submit">Envoyer</button>
+</form>

@@ -4,7 +4,8 @@ import { MOCK_JOBS } from '../../data/jobs';
 
 @Component({
   selector: 'app-job-list',
-  templateUrl: './job-list.component.html'
+  templateUrl: './job-list.component.html',
+  styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
   jobs: Job[] = [];

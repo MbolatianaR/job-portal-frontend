@@ -1,0 +1,14 @@
+<div *ngIf="job as j">
+  <h2>{{ j.title }}</h2>
+  <p>{{ j.description }}</p>
+  <p><strong>Type :</strong> {{ j.type }}</p>
+  <p><strong>Lieu :</strong> {{ j.location }}</p>
+  <p><strong>Salaire :</strong> {{ j.salaryMin }} - {{ j.salaryMax }} €</p>
+  <p><strong>Niveau d'expérience :</strong> {{ j.experienceLevel }}</p>
+
+  <a [routerLink]="['/apply', j.id]">Postuler</a>
+</div>
+
+<div *ngIf="!job">
+  <p>Offre introuvable.</p>
+</div>
