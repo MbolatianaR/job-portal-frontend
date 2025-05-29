@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-job-create',
@@ -10,7 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class JobCreateComponent implements OnInit {
   jobForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.jobForm = this.fb.group({
@@ -30,5 +34,9 @@ export class JobCreateComponent implements OnInit {
       // ➕ Tu peux ici appeler un service pour l’enregistrer
       this.jobForm.reset();
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

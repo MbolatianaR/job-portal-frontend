@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="apply-form-container">
   <h2>Créer une nouvelle offre d’emploi</h2>
 
   <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
@@ -18,5 +18,6 @@
     <input formControlName="experienceLevel" placeholder="Niveau d’expérience" required />
 
     <button type="submit" [disabled]="jobForm.invalid">Créer l’offre</button>
+    <button type="button" class="back-btn" (click)="goBack()">← Annuler</button>
   </form>
 </div>
