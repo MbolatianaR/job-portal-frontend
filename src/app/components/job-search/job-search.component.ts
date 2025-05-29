@@ -1,13 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-top-bar',
-  templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.css'],
+  selector: 'app-job-search',
+  templateUrl: './job-search.component.html',
+  styleUrls: ['./job-search.component.css'],
   standalone : false
 })
-export class TopBarComponent {
+export class JobSearchComponent {
   @Output() searchFilters = new EventEmitter<{
     keyword: string;
     type: string;
@@ -21,9 +20,7 @@ export class TopBarComponent {
   types = ['CDI', 'CDD', 'Stage', 'Freelance'];
   locations = ['Paris', 'Lyon', 'Marseille', 'Remote'];
 
-  constructor(private router: Router) {}
-
-  emitFilters() {
+  onSearch(): void {
     this.searchFilters.emit({
       keyword: this.keyword,
       type: this.selectedType,
@@ -31,7 +28,10 @@ export class TopBarComponent {
     });
   }
 
-  goToCreate() {
-    this.router.navigate(['/create']);
+  reset(): void {
+    this.keyword = '';
+    this.selectedType = '';
+    this.selectedLocation = '';
+    this.onSearch();
   }
 }

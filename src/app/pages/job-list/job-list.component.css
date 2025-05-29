@@ -1,74 +1,14 @@
-.job-feed {
+.job-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.job-separator {
+  width: 100%;
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.job-preview {
-  padding: 1.5rem 1rem;
-  border-bottom: 1px solid #eee;
-}
-
-.job-preview h2 {
-  font-size: 1.5rem;
-  margin: 0 0 0.5rem;
-  color: #023047;
-}
-
-.job-desc {
-  color: #444;
-  margin-bottom: 0.8rem;
-  font-size: 0.95rem;
-}
-
-.job-tags {
-  display: flex;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
-}
-
-.tag {
-  background-color: #ffb703;
-  color: white;
-  border-radius: 15px;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.75rem;
-}
-
-.tag.light {
-  background-color: #8ecae6;
-  color: #023047;
-}
-
-.actions {
-  display: flex;
-  gap: 1rem;
-}
-
-.btn {
-  padding: 0.4rem 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-
-.btn.primary {
-  background-color: #219ebc;
-  color: white;
-}
-
-.btn.primary:hover {
-  background-color: #fb8500;
-}
-
-.btn.secondary {
-  background-color: #eeeeee;
-  color: #023047;
-}
-
-.btn.secondary:hover {
-  background-color: #dcdcdc;
+  margin: 1rem auto;
+  border: none;
+  border-top: 1px solid #ccc;
 }

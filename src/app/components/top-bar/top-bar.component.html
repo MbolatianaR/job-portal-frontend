@@ -4,10 +4,17 @@
       <a routerLink="/" class="logo-text">Job Portal</a>
     </div>
 
-
-    <div class="actions">
-      <input type="text" placeholder="Rechercher un poste..." (input)="onSearch($event)" />
-      <button type="button" (click)="goToCreate()">+ Créer une offre</button>
+    <div class="filters">
+      <input type="text" placeholder="Rechercher un poste..." [(ngModel)]="keyword" (input)="emitFilters()" />
+      <select [(ngModel)]="selectedType" (change)="emitFilters()">
+        <option value="">Type</option>
+        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+      </select>
+      <select [(ngModel)]="selectedLocation" (change)="emitFilters()">
+        <option value="">Lieu</option>
+        <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
+      </select>
+      <button class="create-button" (click)="goToCreate()">+ Créer une offre</button>
     </div>
   </div>
 </header>
