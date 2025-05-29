@@ -1,11 +1,11 @@
+import { User } from './user.model';
+import { Job } from './job.model';
+
 export interface Application {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
+  id?: number;
   skills: string;
   experiences: string;
-  appliedAt: string;
-  postId: number;
+  appliedAt?: string; // généré côté backend
+  user: User;
+  job: Job;
 }
