@@ -6,7 +6,8 @@ import { MOCK_JOBS } from '../../data/jobs';
 @Component({
   selector: 'app-job-detail',
   templateUrl: './job-detail.component.html',
-  styleUrls: ['./job-detail.component.css']
+  styleUrls: ['./job-detail.component.css'],
+  standalone : false
 })
 export class JobDetailComponent implements OnInit {
   job: Job | undefined;

@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-job-apply',
   templateUrl: './job-apply.component.html',
-  styleUrls: ['./job-apply.component.css']
+  styleUrls: ['./job-apply.component.css'],
+  standalone : false
 })
 export class JobApplyComponent implements OnInit {
   applicationForm!: FormGroup;

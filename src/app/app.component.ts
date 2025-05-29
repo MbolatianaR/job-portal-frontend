@@ -3,9 +3,14 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone: false,
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  standalone : false
 })
 export class AppComponent {
-  protected title = 'job-portal-frontend';
+  searchTerm = '';
+
+  handleSearch(term: string) {
+    this.searchTerm = term;
+    
+  }
 }
