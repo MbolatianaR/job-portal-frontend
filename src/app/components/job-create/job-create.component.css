@@ -77,3 +77,10 @@ button:disabled {
   background-color: #219ebc;
   color: white;
 }
+
+select:focus {
+  border-color: #219ebc;
+  background-color: #ffffff;
+  outline: none;
+}
+

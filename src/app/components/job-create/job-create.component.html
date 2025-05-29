@@ -15,7 +15,15 @@
 
     <input formControlName="salaryMin" type="number" placeholder="Salaire min (€)" required />
     <input formControlName="salaryMax" type="number" placeholder="Salaire max (€)" required />
-    <input formControlName="experienceLevel" placeholder="Niveau d’expérience" required />
+    <select formControlName="experienceLevel" required>
+      <option value="" disabled selected hidden>Niveau d’expérience</option>
+      <option value="Débutant">Débutant</option>
+      <option value="Junior">Junior</option>
+      <option value="Intermédiaire">Intermédiaire</option>
+      <option value="Senior">Senior</option>
+      <option value="Expert">Expert</option>
+    </select>
+
 
     <button type="submit" [disabled]="jobForm.invalid">Créer l’offre</button>
     <button type="button" class="back-btn" (click)="goBack()">← Annuler</button>
