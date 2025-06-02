@@ -34,4 +34,9 @@ export class TopBarComponent {
   goToCreate() {
     this.router.navigate(['/create']);
   }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
 }

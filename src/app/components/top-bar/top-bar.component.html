@@ -15,6 +15,7 @@
         <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
       </select>
       <button class="create-button" (click)="goToCreate()">+ Créer une offre</button>
+      <button (click)="goToLogin()">S'identifier</button>
     </div>
   </div>
 </header>
