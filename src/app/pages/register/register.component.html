@@ -1,0 +1,22 @@
+<div class="register-container">
+  <h2>Créer un nouveau compte</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <input formControlName="firstName" placeholder="Prénom" required />
+    <input formControlName="lastName" placeholder="Nom" required />
+    <input formControlName="email" type="email" placeholder="Email" required />
+    <input formControlName="phone" placeholder="Téléphone" />
+
+    <input formControlName="password" type="password" placeholder="Mot de passe" required />
+    <input formControlName="confirmPassword" type="password" placeholder="Confirmer mot de passe" required />
+
+        <div *ngIf="registerForm.errors?.['passwordMismatch']" class="error-msg">
+        Les mots de passe ne correspondent pas.
+        </div>
+
+
+    <button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
+</div>

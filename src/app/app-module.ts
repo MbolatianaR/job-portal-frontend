@@ -14,7 +14,9 @@ import { JobListItemComponent } from './components/job-list-item/job-list-item.c
 import { JobCreateComponent } from './components/job-create/job-create.component';
 import { JobSearchComponent } from './components/job-search/job-search.component';
 import { JobListPageComponent } from './pages/job-list-page/job-list-page.component';
-import { LoginComponent } from './components/auth/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './pages/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,14 +28,16 @@ import { LoginComponent } from './components/auth/login/login.component';
     JobListComponent,
     TopBarComponent,
     LoginComponent,
-    JobListPageComponent
+    JobListPageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

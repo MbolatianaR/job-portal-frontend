@@ -35,4 +35,10 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('token');
   }
+
+    register(user: { firstName: string; lastName: string; email: string; phone?: string; password: string }): Observable<any> {
+    // Pour l'instant mock ou appel réel au backend
+    // Exemple d'appel HTTP POST vers backend
+    return this.http.post(`${this.apiUrl}/register`, user);
+  }
 }
