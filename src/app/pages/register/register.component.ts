@@ -37,15 +37,18 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      // Appelle le service d'inscription ici
-      console.log('Formulaire valide, données:', this.registerForm.value);
-      // Reset erreur
-      this.errorMessage = '';
-      // Par exemple, envoyer les données au backend...
-    } else {
-      this.errorMessage = 'Merci de remplir correctement le formulaire.';
+      this.authService.register(this.registerForm.value).subscribe({
+        next: () => {
+          // Redirection après inscription réussie, par ex vers login ou accueil
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          this.errorMessage = 'Erreur lors de l’inscription';
+        }
+      });
     }
   }
+
 
     onCancel() {
     this.router.navigate(['/']); // Redirige vers la page d'accueil, change la route si besoin

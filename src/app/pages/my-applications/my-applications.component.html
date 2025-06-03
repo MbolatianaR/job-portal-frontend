@@ -1,0 +1,19 @@
+<div class="applications-container">
+  <h2>Mes candidatures</h2>
+
+  <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
+
+  <div *ngIf="applications.length === 0 && !errorMessage">
+    Vous n'avez postulé à aucune offre.
+  </div>
+
+  <ul *ngIf="applications.length > 0" class="applications-list">
+    <li *ngFor="let app of applications" class="application-item">
+      <h3>{{ app.job.title }}</h3>
+      <p>Status : <strong>{{ app.status || 'En attente' }}</strong></p>
+      <p>Date de candidature : {{ app.appliedAt | date:'dd/MM/yyyy' }}</p>
+      <p>Compétences : {{ app.skills }}</p>
+      <p>Expériences : {{ app.experiences }}</p>
+    </li>
+  </ul>
+</div>

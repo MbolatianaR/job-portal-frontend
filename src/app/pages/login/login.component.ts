@@ -30,7 +30,8 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
-          this.router.navigate(['/']); // redirection accueil
+          // Redirection après succès
+          this.router.navigate(['/']); // ou une autre route
         },
         error: () => {
           this.errorMessage = 'Email ou mot de passe incorrect';
@@ -38,6 +39,7 @@ export class LoginComponent {
       });
     }
   }
+
 
   goBack(): void {
   this.location.back();

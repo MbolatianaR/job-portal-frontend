@@ -12,4 +12,10 @@ export class ApplicationService {
   submitApplication(app: Application): Observable<any> {
     return this.http.post(this.apiUrl, app);
   }
+
+  getApplicationsByUser(userId: string): Observable<Application[]> {
+    return this.http.get<Application[]>(`${this.apiUrl}/user/${userId}`);
+  }
+
+  
 }

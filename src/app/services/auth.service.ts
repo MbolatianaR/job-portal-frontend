@@ -57,6 +57,20 @@ export class AuthService {
     }
   }
 
+    getUserId(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const payload: any = (jwt_decode as any).default(token);
+      // Ajuste selon le nom exact de la propriété user id dans ton token JWT
+      return payload.sub || payload.id || null;
+    } catch (e) {
+      console.error('Erreur décodage token', e);
+      return null;
+    }
+  }
+
   
   
 }

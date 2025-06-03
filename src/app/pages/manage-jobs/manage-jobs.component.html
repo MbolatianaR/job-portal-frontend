@@ -1,0 +1,22 @@
+<div class="manage-jobs-container">
+  <h2>Gestion de mes offres</h2>
+
+  <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
+
+  <div *ngIf="jobs.length === 0 && !errorMessage">
+    Vous n'avez encore créé aucune offre.
+  </div>
+
+  <ul *ngIf="jobs.length > 0" class="jobs-list">
+    <li *ngFor="let job of jobs" class="job-item">
+      <h3>{{ job.title }}</h3>
+      <p>{{ job.description }}</p>
+      <p><strong>Lieu :</strong> {{ job.location }}</p>
+      <p><strong>Type :</strong> {{ job.type }}</p>
+      <div class="actions">
+        <button [routerLink]="['/detail', job.id]" class="btn secondary">Détails</button>
+        <button [routerLink]="['/manage-applicants', job.id]" class="btn primary">Voir candidats</button>
+      </div>
+    </li>
+  </ul>
+</div>

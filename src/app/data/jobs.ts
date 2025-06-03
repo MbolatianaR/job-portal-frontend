@@ -1,37 +1,45 @@
 import { Job } from '../models/job.model';
+import { MOCK_USERS } from './users';
+import { MOCK_COMPANIES } from './companies';
 
 export const MOCK_JOBS: Job[] = [
   {
     id: 1,
-    title: 'Développeur Frontend Angular',
-    description: 'Développement d une application web responsive avec Angular.',
-    type: 'CDI',
+    title: 'Développeur Angular',
+    description: 'Développement d\'applications front-end en Angular.',
     location: 'Paris',
+    type: 'CDI',
     salaryMin: 35000,
     salaryMax: 45000,
     experienceLevel: 'Junior',
-    createdAt: ''
+    recruiter: MOCK_USERS[1],
+    company: MOCK_COMPANIES[0],
+    createdAt: '2025-06-01T09:00:00Z'
   },
   {
     id: 2,
-    title: 'Data Analyst',
-    description: 'Analyse de données, création de rapports et tableaux de bord.',
-    type: 'CDD',
+    title: 'Analyste financier',
+    description: 'Analyse des données financières et reporting.',
     location: 'Lyon',
+    type: 'CDD',
     salaryMin: 30000,
     salaryMax: 40000,
-    experienceLevel: 'Débutant',
-    createdAt: ''
+    experienceLevel: 'Confirmé',
+    recruiter: MOCK_USERS[1],
+    company: MOCK_COMPANIES[1],
+    createdAt: '2025-05-15T10:30:00Z'
   },
   {
     id: 3,
-    title: 'Chef de Projet IT',
-    description: 'Gestion de projets techniques, coordination des équipes, suivi client.',
-    type: 'CDI',
+    title: 'Ingénieur énergie renouvelable',
+    description: 'Conception et optimisation des systèmes d\'énergie verte.',
     location: 'Marseille',
-    salaryMin: 45000,
-    salaryMax: 55000,
-    experienceLevel: 'Confirmé',
-    createdAt: ''
+    type: 'Stage',
+    salaryMin: 18000,
+    salaryMax: 22000,
+    experienceLevel: 'Débutant',
+    recruiter: MOCK_USERS[1],
+    company: MOCK_COMPANIES[2],
+    createdAt: '2025-06-10T08:00:00Z'
   }
 ];
