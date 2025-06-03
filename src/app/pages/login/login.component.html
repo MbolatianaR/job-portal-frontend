@@ -1,7 +1,10 @@
-<!-- src/app/components/auth/login/login.component.html -->
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
   <input type="email" formControlName="email" placeholder="Email" />
   <input type="password" formControlName="password" placeholder="Mot de passe" />
+  
   <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+  
+  <button type="button" class="back-btn" (click)="goBack()">← Retour</button>
+
   <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
 </form>

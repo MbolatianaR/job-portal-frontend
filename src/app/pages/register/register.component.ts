@@ -1,54 +1,53 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  standalone : false
+  standalone : false 
 })
-export class RegisterComponent {
-  registerForm: FormGroup;
-  errorMessage = '';
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
+  errorMessage: string = '';
+  constructor(private fb: FormBuilder, private router: Router) {}
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
+  ngOnInit(): void {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: [''],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validators: this.passwordsMatchValidator
-    });
+      confirmPassword: ['', Validators.required],
+      role: ['', Validators.required],
+    }, { validators: this.passwordsMatchValidator });
   }
 
-  passwordsMatchValidator(form: FormGroup) {
-    const pass = form.get('password')?.value;
-    const confirm = form.get('confirmPassword')?.value;
-    return pass === confirm ? null : { passwordMismatch: true };
+  // Validator personnalisé pour vérifier que password === confirmPassword
+  passwordsMatchValidator(group: AbstractControl): {[key: string]: boolean} | null {
+    const pass = group.get('password')?.value;
+    const confirmPass = group.get('confirmPassword')?.value;
+    if (pass && confirmPass && pass !== confirmPass) {
+      return { passwordMismatch: true };
+    }
+    return null;
   }
 
   onSubmit() {
-    if (this.registerForm.invalid) {
-      return;
+    if (this.registerForm.valid) {
+      // Appelle le service d'inscription ici
+      console.log('Formulaire valide, données:', this.registerForm.value);
+      // Reset erreur
+      this.errorMessage = '';
+      // Par exemple, envoyer les données au backend...
+    } else {
+      this.errorMessage = 'Merci de remplir correctement le formulaire.';
     }
-    const { firstName, lastName, email, phone, password } = this.registerForm.value;
+  }
 
-    this.authService.register({ firstName, lastName, email, phone, password }).subscribe({
-      next: () => {
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        this.errorMessage = 'Erreur lors de l\'inscription';
-      }
-    });
+    onCancel() {
+    this.router.navigate(['/']); // Redirige vers la page d'accueil, change la route si besoin
   }
 }

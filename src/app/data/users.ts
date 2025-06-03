@@ -7,7 +7,7 @@ export const MOCK_USERS: User[] = [
     lastName: 'Rakoto',
     email: 'tiana@example.com',
     phone: '0600000000',
-    role: 'CANDIDATE'
+    role: 'candidate'
   },
   {
     id: 2,
@@ -15,6 +15,6 @@ export const MOCK_USERS: User[] = [
     lastName: 'Dupont',
     email: 'jennifer@example.com',
     phone: '0700000000',
-    role: 'CANDIDATE'
+    role: 'candidate'
   }
 ];

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+import * as jwt_decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +43,20 @@ export class AuthService {
     // Exemple d'appel HTTP POST vers backend
     return this.http.post(`${this.apiUrl}/register`, user);
   }
+
+    getUserRole(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const payload: any = (jwt_decode as any).default(token);
+      return payload.role || null;
+    } catch (e) {
+      console.error('Erreur décodage token', e);
+      return null;
+    }
+  }
+
+  
+  
 }
