@@ -5,7 +5,12 @@
     </div>
 
     <div class="filters">
-      <input type="text" placeholder=" 🔍 Rechercher un poste..." [(ngModel)]="keyword" (input)="emitFilters()" />
+      <input
+        type="text"
+        placeholder=" 🔍 Rechercher un poste..."
+        [(ngModel)]="keyword"
+        (input)="emitFilters()"
+      />
       <select [(ngModel)]="selectedType" (change)="emitFilters()">
         <option value="">Type</option>
         <option *ngFor="let type of types" [value]="type">{{ type }}</option>
@@ -14,9 +19,30 @@
         <option value="">Lieu</option>
         <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
       </select>
-      <button class="create-button" (click)="goToCreate()">+ Créer une offre</button>
-      <button (click)="goToLogin()">S'identifier</button>
-      <button (click)="goToRegister()">Créer un compte</button>
+
+      <!-- Affichage conditionnel selon connexion -->
+      <button
+        *ngIf="!isLoggedIn"
+        class="btn-login"
+        (click)="goToLogin()"
+      >S'identifier</button>
+      <button
+        *ngIf="!isLoggedIn"
+        class="btn-register"
+        (click)="goToRegister()"
+      >Créer un compte</button>
+
+      <button
+        *ngIf="isLoggedIn && userRole === 'recruiter'"
+        class="create-button"
+        (click)="goToCreate()"
+      >+ Créer une offre</button>
+
+      <button
+        *ngIf="isLoggedIn"
+        class="btn-logout"
+        (click)="logout()"
+      >Se déconnecter</button>
     </div>
   </div>
 </header>

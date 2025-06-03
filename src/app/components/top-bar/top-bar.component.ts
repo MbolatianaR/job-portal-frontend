@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.css'],
-  standalone : false
+  standalone: false
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnInit {
   @Output() searchFilters = new EventEmitter<{
     keyword: string;
     type: string;
@@ -21,7 +22,21 @@ export class TopBarComponent {
   types = ['CDI', 'CDD', 'Stage', 'Freelance'];
   locations = ['Paris', 'Lyon', 'Marseille', 'Remote'];
 
-  constructor(private router: Router) {}
+  isLoggedIn = false;
+  userRole: string | null = null;
+
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.isLoggedIn().subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+      if (loggedIn) {
+        this.userRole = this.authService.getUserRole();
+      } else {
+        this.userRole = null;
+      }
+    });
+  }
 
   emitFilters() {
     this.searchFilters.emit({
@@ -40,7 +55,11 @@ export class TopBarComponent {
   }
 
   goToRegister() {
-  this.router.navigate(['/register']);
-}
+    this.router.navigate(['/register']);
+  }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }
