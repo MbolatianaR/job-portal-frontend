@@ -11,7 +11,7 @@
     <li *ngFor="let app of applications" class="application-item">
       <h3>{{ app.job.title }}</h3>
       <p>Status : <strong>{{ app.status || 'En attente' }}</strong></p>
-      <!--<p>Date de candidature : {{ app.appliedAt | date:'dd/MM/yyyy' }}</p>-->
+      <!--<p>Date de candidature : {{ convertToDate(app.appliedAt) | date:'dd/MM/yyyy' }}</p>-->
       <p>Compétences : {{ app.skills }}</p>
       <p>Expériences : {{ app.experiences }}</p>
     </li>

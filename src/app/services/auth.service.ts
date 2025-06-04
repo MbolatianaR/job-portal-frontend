@@ -4,13 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
+import { environment } from '../pages/environment/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth'; // adapte à ton backend
+  //private apiUrl = 'http://localhost:8080/api/auth'; // adapte à ton backend
+  private apiUrl = `${environment.apiUrl}/api/auth`;
   private loggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
   constructor(private http: HttpClient) {}

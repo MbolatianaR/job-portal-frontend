@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Job } from '../models/job.model';
 import { Observable } from 'rxjs';
+import { environment } from '../pages/environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
-  private apiUrl = 'http://localhost:8080/api/jobs';
-
+  //private apiUrl = 'http://localhost:8080/api/jobs';
+  private apiUrl = `${environment.apiUrl}/api/jobs`;
   constructor(private http: HttpClient) {}
 
   getAllJobs(): Observable<Job[]> {
