@@ -34,7 +34,7 @@ export class JobApplyComponent implements OnInit {
   ngOnInit(): void {
     const jobId = this.route.snapshot.paramMap.get('id');
     if (jobId) {
-      this.jobService.getJobById(Number(jobId)).subscribe(job => {
+      this.jobService.getJobById(jobId).subscribe(job => {
         this.job = job;
       });
     }
