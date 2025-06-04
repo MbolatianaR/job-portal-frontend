@@ -33,10 +33,17 @@
       >Créer un compte</button>
 
       <button
-        *ngIf="isLoggedIn && userRole === 'recruiter'"
+        *ngIf="isLoggedIn && userRole?.toLowerCase() === 'recruiter'"
         class="create-button"
         (click)="goToCreate()"
       >+ Créer une offre</button>
+
+      <button
+        *ngIf="isLoggedIn && userRole?.toLowerCase() === 'candidate'"
+        class="my-candidature"
+        (click)="goToCandidature()"
+      >Mes candidatures</button>
+
 
       <button
         *ngIf="isLoggedIn"

@@ -14,12 +14,18 @@ export class JobDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private jobService: JobService) {}
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id'); // ID récupéré depuis l'URL
-    if (id) {
-      this.jobService.getJobById(Number(id)).subscribe(job => {
-        this.job = job;
-      });
-    }
+ngOnInit(): void {
+  const jobId = this.route.snapshot.paramMap.get('id'); // string | null
+  if (jobId) {
+    this.jobService.getJobById(jobId).subscribe({
+      next: (job) => this.job = job,
+      error: () => console.warn('Offre introuvable pour id:', jobId)
+    });
+  } else {
+    console.error('Id manquant dans l’URL');
   }
+}
+
+
+
 }
