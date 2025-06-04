@@ -1,17 +1,19 @@
-<div class="apply-form-container">
-  <h2>Postuler à : {{ job?.title }}</h2>
-
+<div class="application-container">
+<h2>Postuler à cette offre</h2>
+ 
   <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
-    <input formControlName="firstName" placeholder="Prénom" required />
-    <input formControlName="lastName" placeholder="Nom" required />
-    <input formControlName="email" type="email" placeholder="Email" required />
-    <input formControlName="phone" placeholder="Téléphone" />
-
-    <textarea formControlName="skills" placeholder="Compétences"></textarea>
-    <textarea formControlName="experiences" placeholder="Expériences"></textarea>
-    <textarea formControlName="cover_letter" placeholder="Motivation"></textarea>
-
-    <button type="submit" [disabled]="applicationForm.invalid">Envoyer la candidature</button>
-    <button type="button" class="back-btn" (click)="goBack()">← Retour</button>
-  </form>
+<label for="skills">Compétences</label>
+<textarea id="skills" formControlName="skills" required></textarea>
+ 
+    <label for="experiences">Expériences</label>
+<textarea id="experiences" formControlName="experiences" required></textarea>
+ 
+    <button type="submit" [disabled]="applicationForm.invalid">Envoyer ma candidature</button>
+<button type="button" (click)="goBack()">Annuler</button>
+</form>
+ 
+  <div class="success-msg" *ngIf="successMessage">{{ successMessage }}</div>
+<div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
 </div>
+
+ 

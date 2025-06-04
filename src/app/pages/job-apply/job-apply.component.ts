@@ -1,64 +1,61 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Job } from '../../models/job.model';
-import { JobService } from '../../services/job.service'; // Import du service
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JobService } from '../../services/job.service';
+import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
-
+ 
 @Component({
   selector: 'app-job-apply',
   templateUrl: './job-apply.component.html',
   styleUrls: ['./job-apply.component.css'],
-  standalone : false
 })
 export class JobApplyComponent implements OnInit {
-  job?: Job;
-  applicationForm: FormGroup;
-
+  applicationForm!: FormGroup;
+  jobId!: string;
+  userId!: string | null;
+  successMessage = '';
+  errorMessage = '';
+ 
   constructor(
     private route: ActivatedRoute,
-    private jobService: JobService, // Ajout du service
     private fb: FormBuilder,
+    private jobService: JobService,
+    private authService: AuthService,
     private location: Location
-  ) {
+  ) {}
+ 
+  ngOnInit(): void {
+    this.jobId = this.route.snapshot.paramMap.get('id') || '';
+    this.userId = this.authService.getUserId();
+ 
     this.applicationForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [''],
-      skills: [''],
-      experiences: ['']
+      skills: ['', Validators.required],
+      experiences: ['', Validators.required],
     });
   }
-
-  ngOnInit(): void {
-    const jobId = this.route.snapshot.paramMap.get('id');
-    if (jobId) {
-      this.jobService.getJobById(Number(jobId)).subscribe(job => {
-        this.job = job;
+ 
+  onSubmit(): void {
+    if (this.applicationForm.valid && this.userId) {
+      const applicationData = {
+        userId: this.userId,
+        ...this.applicationForm.value
+      };
+ 
+      this.jobService.applyForJob(this.jobId, applicationData).subscribe({
+        next: () => {
+          this.successMessage = 'Candidature envoyée avec succès !';
+          this.errorMessage = '';
+          this.applicationForm.reset();
+        },
+        error: () => {
+          this.errorMessage = 'Erreur lors de l’envoi de la candidature';
+        }
       });
     }
   }
 
-  onSubmit(): void {
-    if (this.applicationForm.valid) {
-      const applicationData = {
-        ...this.applicationForm.value,
-        jobId: this.job?.id
-      };
-
-      console.log('Candidature envoyée :', applicationData);
-
-      // 🔹 Ajoute ici l'appel API pour envoyer la candidature :
-      // this.jobService.applyForJob(applicationData).subscribe(response => {
-      //   console.log('Réponse du backend :', response);
-      // });
-
-      this.applicationForm.reset();
-    }
-  }
-
-  goBack(): void {
+  goBack(): void{
     this.location.back();
   }
 }

@@ -1,57 +1,123 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Location } from '@angular/common';
+
 import { AuthService } from '../../services/auth.service';
 
+import { JobService } from '../../services/job.service';
+ 
 @Component({
+
   selector: 'app-job-create',
+
   templateUrl: './job-create.component.html',
+
   styleUrls: ['./job-create.component.css'],
+
   standalone: false
+
 })
+
 export class JobCreateComponent implements OnInit {
+
   jobForm!: FormGroup;
+
   recruiterId!: string | null;
 
+  errorMessage: string = '';
+
+  successMessage: string = '';
+ 
   constructor(
+
     private fb: FormBuilder,
+
     private location: Location,
-    private authService: AuthService
+
+    private authService: AuthService,
+
+    private jobService: JobService
+
   ) {}
-
+ 
   ngOnInit(): void {
+
     this.jobForm = this.fb.group({
+
       title: ['', Validators.required],
+
       description: ['', Validators.required],
+
       location: ['', Validators.required],
+
       type: ['CDI', Validators.required],
-      salaryMin: [0, Validators.required],
-      salaryMax: [0, Validators.required],
+
+      salaryMin: [0, [Validators.required, Validators.min(0)]],
+
+      salaryMax: [0, [Validators.required, Validators.min(0)]],
+
       experienceLevel: ['', Validators.required]
-      // Pas besoin de champ recruiterId dans formulaire visible
+
     });
+ 
+    this.recruiterId = this.authService.getUserId(); // 🔐 récupère l’ID du recruteur connecté
 
-    // Récupérer l'id du recruteur connecté via AuthService
-    this.recruiterId = this.authService.getUserId(); // supposé retourner un number ou null
   }
-
+ 
   onSubmit(): void {
-    if (this.jobForm.valid && this.recruiterId != null) {
-      // Préparer l'objet complet avec recruiterId
+
+    if (this.jobForm.valid && this.recruiterId) {
+
+      // Le backend attend recruiterId directement, pas createdBy
+
       const jobData = {
+
         ...this.jobForm.value,
+
         recruiterId: this.recruiterId
+
       };
+ 
+      this.jobService.createJob(jobData).subscribe({
 
-      console.log('Nouvelle offre avec recruteur :', jobData);
-      // Ici, appeler ton service pour envoyer jobData au backend
-      this.jobForm.reset();
+        next: () => {
+
+          this.successMessage = "Offre créée avec succès !";
+
+          this.errorMessage = '';
+
+          this.jobForm.reset();
+
+        },
+
+        error: (err) => {
+
+          this.errorMessage = "Erreur lors de la création de l'offre.";
+
+          this.successMessage = '';
+
+          console.error(err);
+
+        }
+
+      });
+
     } else {
-      console.error('Formulaire invalide ou recruteur non identifié');
+
+      this.errorMessage = "Formulaire invalide ou recruteur non connecté.";
+
     }
+
+  }
+ 
+  goBack(): void {
+
+    this.location.back();
+
   }
 
-  goBack(): void {
-    this.location.back();
-  }
 }
+
+ 

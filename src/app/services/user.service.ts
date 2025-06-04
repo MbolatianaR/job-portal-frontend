@@ -7,7 +7,7 @@ import { environment } from '../pages/environment/environment';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   //private apiUrl = 'http://localhost:8080/api/users';
-  private apiUrl = `${environment.apiUrl}users`;
+  private apiUrl = `${environment.apiUrl}v1/users`;
   constructor(private http: HttpClient) {}
 
   createUser(user: User): Observable<User> {

@@ -1,10 +1,41 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-  <input type="email" formControlName="email" placeholder="Email" />
-  <input type="password" formControlName="password" placeholder="Mot de passe" />
-  
-  <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
-  
-  <button type="button" class="back-btn" (click)="goBack()">← Retour</button>
+<div class="login-container">
+<h2>Connexion</h2>
+ 
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+ 
+    <!-- Email -->
+<input formControlName="email" placeholder="Email" type="email" />
+<div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-msg">
+<small *ngIf="loginForm.get('email')?.errors?.['required']">L'email est requis.</small>
+<small *ngIf="loginForm.get('email')?.errors?.['email']">Format d'email invalide.</small>
+</div>
+ 
+    <!-- Mot de passe -->
+<input formControlName="password" placeholder="Mot de passe (4 chiffres)" type="password" />
+<div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-msg">
+<small *ngIf="loginForm.get('password')?.errors?.['required']">Le mot de passe est requis.</small>
+<small *ngIf="loginForm.get('password')?.errors?.['pattern']">Le mot de passe doit contenir exactement 4 chiffres.</small>
+</div>
+ 
+    <!-- Erreur d'authentification -->
+<div *ngIf="errorMessage" class="error-msg">
 
-  <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
-</form>
+      {{ errorMessage }}
+</div>
+ 
+    <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+ 
+    <div class="cancel-container">
+<button type="button" class="back-btn" (click)="goBack()">← Annuler</button>
+</div>
+ 
+    <p>
+
+      Pas encore de compte ?
+<a routerLink="/register">Créer un compte ici</a>
+</p>
+ 
+  </form>
+</div>
+
+ 

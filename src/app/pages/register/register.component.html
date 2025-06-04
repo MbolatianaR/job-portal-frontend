@@ -1,39 +1,71 @@
 <div class="register-form-container">
-  <h2>Créer un nouveau compte</h2>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<h2>Créer un nouveau compte</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+ 
+    <!-- Prénom -->
+<input formControlName="firstName" placeholder="Prénom" required />
+<div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" class="error-msg">
 
-    <input formControlName="firstName" placeholder="Prénom" required />
-    <input formControlName="lastName" placeholder="Nom" required />
-    <input formControlName="email" type="email" placeholder="Email" required />
-    <input formControlName="phone" placeholder="Téléphone" />
+      Le prénom est requis.
+</div>
+ 
+    <!-- Nom -->
+<input formControlName="lastName" placeholder="Nom" required />
+<div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="error-msg">
 
-    <select formControlName="role" required>
-      <option value="" disabled>Choisir un rôle</option>
-      <option value="candidate">Candidat</option>
-      <option value="recruiter">Recruteur</option>
-    </select>
-    <div *ngIf="registerForm.controls['role'].invalid && registerForm.controls['role'].touched" class="error-msg">
+      Le nom est requis.
+</div>
+ 
+    <!-- Email -->
+<input formControlName="email" type="email" placeholder="Email" required />
+<div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-msg">
+<small *ngIf="registerForm.get('email')?.errors?.['required']">L'email est requis.</small>
+<small *ngIf="registerForm.get('email')?.errors?.['email']">Format d'email invalide.</small>
+</div>
+ 
+    <!-- Téléphone -->
+<input formControlName="phone" placeholder="Téléphone" />
+ 
+    <!-- Rôle -->
+<select formControlName="role" required>
+<option value="" disabled>Choisir un rôle</option>
+<option value="CANDIDATE">Candidat</option>
+<option value="RECRUITER">Recruteur</option>
+</select>
+<div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="error-msg">
+
       Le rôle est obligatoire.
-    </div>
+</div>
+ 
+    <!-- Mot de passe -->
+<input formControlName="password" type="password" placeholder="Mot de passe" required />
+<div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-msg">
+<small *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est requis.</small>
+<small *ngIf="registerForm.get('password')?.errors?.['pattern']">Le mot de passe doit contenir 4 chiffres.</small>
+</div>
+ 
+    <!-- Confirmation -->
+<input formControlName="confirmPassword" type="password" placeholder="Confirmer mot de passe" required />
+<div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" class="error-msg">
+  Les mots de passe ne correspondent pas.
+</div>
 
-    <input formControlName="password" type="password" placeholder="Mot de passe" required />
-    <input formControlName="confirmPassword" type="password" placeholder="Confirmer mot de passe" required />
-
-    <div *ngIf="registerForm.errors?.['passwordMismatch']" class="error-msg">
-      Les mots de passe ne correspondent pas.
-    </div>
-
-    <button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
-
+ 
+    <!-- Soumission -->
+<button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
+ 
     <div class="cancel-container">
-      <button type="button" class="back-btn" (click)="onCancel()">← Annuler</button>
-    </div>
-  </form>
-
+<button type="button" class="back-btn" (click)="onCancel()">← Annuler</button>
+</div>
+</form>
+ 
   <p>
-    Déjà un compte ? 
-    <a routerLink="/login">Connectez-vous ici</a>
-  </p>
 
+    Déjà un compte ?
+<a routerLink="/login">Connectez-vous ici</a>
+</p>
+ 
   <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
 </div>
+
+ 
