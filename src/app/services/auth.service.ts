@@ -9,12 +9,7 @@ import { environment } from '../pages/environment/environment';
   providedIn: 'root'
 })
 export class AuthService {
-<<<<<<< HEAD
-  //private apiUrl = 'http://localhost:8080/api/auth'; // adapte à ton backend
   private apiUrl = `${environment.apiUrl}v1/auth`;
-=======
-  private apiUrl = `${environment.apiUrl}auth`;
->>>>>>> 68200c86e142bdeb55f76b830b21ca6d4c43e08c
   private loggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
   constructor(private http: HttpClient) {}

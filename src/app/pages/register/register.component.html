@@ -27,13 +27,14 @@
 <input formControlName="phone" placeholder="Téléphone" />
  
     <!-- Rôle -->
-<select formControlName="role" required>
-<option value="" disabled>Choisir un rôle</option>
-<option value="CANDIDATE">Candidat</option>
-<option value="RECRUITER">Recruteur</option>
-</select>
-<div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="error-msg">
 
+    <select formControlName="role" required>
+      <option value="" disabled selected hidden>Choisir un rôle</option>
+      <option value="CANDIDATE">Candidat</option>
+      <option value="RECRUITER">Recruteur</option>
+    </select>
+
+    <div *ngIf="registerForm.controls['role'].invalid && registerForm.controls['role'].touched" class="error-msg">
       Le rôle est obligatoire.
 </div>
  

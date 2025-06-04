@@ -20,15 +20,16 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [''],
-      password: ['', [Validators.required, Validators.pattern(/^\d{4}$/)]],
-      confirmPassword: ['', Validators.required],
-      role: ['', Validators.required],
-    }, { validators: this.passwordsMatchValidator });
+  this.registerForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    phone: [''],
+    password: ['', [Validators.required, Validators.pattern(/^\d{4}$/)]],
+    confirmPassword: ['', Validators.required],
+    role: ['', Validators.required],
+  }, { validators: this.passwordsMatchValidator });
+
   }
 
   // Validator personnalisé pour vérifier que password === confirmPassword
@@ -41,19 +42,38 @@ export class RegisterComponent implements OnInit {
     return null;
   }
 
-  onSubmit() {
-    if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe({
-        next: () => {
-          // Redirection après inscription réussie, par ex vers login ou accueil
-          this.router.navigate(['/login']);
-        },
-        error: (err) => {
-          this.errorMessage = 'Erreur lors de l’inscription';
-        }
-      });
-    }
+onSubmit() {
+  if (this.registerForm.valid) {
+    // Préparation des données à envoyer au backend
+    const formValue = this.registerForm.value;
+
+    // Assure-toi que le phone n’est pas vide, sinon donne une valeur par défaut
+    const phone = formValue.phone && formValue.phone.trim() !== '' ? formValue.phone : '0000000000';
+
+    // Met le rôle en majuscules (pour correspondre à l’enum backend)
+    const role = formValue.role.toUpperCase();
+
+    // Préparer l’objet à envoyer
+    const userToRegister = {
+      firstName: formValue.firstName,
+      lastName: formValue.lastName,
+      email: formValue.email,
+      phone: phone,
+      password: formValue.password,
+      role: role
+    };
+
+    this.authService.register(userToRegister).subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.errorMessage = 'Erreur lors de l’inscription';
+      }
+    });
   }
+}
+
 
   onCancel() {
     this.router.navigate(['/']); // Redirige vers la page d'accueil, change la route si besoin
