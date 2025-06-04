@@ -1,6 +1,5 @@
 import { Job } from '../models/job.model';
 import { MOCK_USERS } from './users';
-import { MOCK_COMPANIES } from './companies';
 
 export const MOCK_JOBS: Job[] = [
   {
@@ -11,9 +10,9 @@ export const MOCK_JOBS: Job[] = [
     type: 'CDI',
     salaryMin: 35000,
     salaryMax: 45000,
+    company : "TechComp",
     experienceLevel: 'Junior',
     recruiter: MOCK_USERS[1],
-    company: MOCK_COMPANIES[0],
     createdAt: '2025-06-01T09:00:00Z'
   },
   {
@@ -25,8 +24,8 @@ export const MOCK_JOBS: Job[] = [
     salaryMin: 30000,
     salaryMax: 40000,
     experienceLevel: 'Confirmé',
+    company : "TechComp",
     recruiter: MOCK_USERS[1],
-    company: MOCK_COMPANIES[1],
     createdAt: '2025-05-15T10:30:00Z'
   },
   {
@@ -38,8 +37,8 @@ export const MOCK_JOBS: Job[] = [
     salaryMin: 18000,
     salaryMax: 22000,
     experienceLevel: 'Débutant',
+    company : "TechComp",
     recruiter: MOCK_USERS[1],
-    company: MOCK_COMPANIES[2],
     createdAt: '2025-06-10T08:00:00Z'
   }
 ];
