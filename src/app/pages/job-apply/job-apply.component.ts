@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Job } from '../../models/job.model';
 import { MOCK_JOBS } from '../../data/jobs';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-
 
 @Component({
   selector: 'app-job-apply',
   templateUrl: './job-apply.component.html',
   styleUrls: ['./job-apply.component.css'],
-  standalone : false
+  standalone: false
 })
 export class JobApplyComponent implements OnInit {
   job?: Job;
@@ -22,9 +21,9 @@ export class JobApplyComponent implements OnInit {
     private location: Location
   ) {
     this.applicationForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      email: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phone: [''],
       skills: [''],
       experiences: ['']
@@ -34,11 +33,22 @@ export class JobApplyComponent implements OnInit {
   ngOnInit(): void {
     const jobId = Number(this.route.snapshot.paramMap.get('id'));
     this.job = MOCK_JOBS.find(j => j.id === jobId);
+    if (!this.job) {
+      console.warn('Offre introuvable pour id:', jobId);
+    }
   }
 
   onSubmit(): void {
     if (this.applicationForm.valid) {
-      console.log('Candidature envoyée :', this.applicationForm.value);
+      // Ici tu enverras la candidature au backend
+      const applicationData = {
+        ...this.applicationForm.value,
+        jobId: this.job?.id
+      };
+      console.log('Candidature envoyée :', applicationData);
+      // Réinitialiser formulaire si besoin
+      this.applicationForm.reset();
+      // Eventuellement un message ou redirection
     }
   }
 

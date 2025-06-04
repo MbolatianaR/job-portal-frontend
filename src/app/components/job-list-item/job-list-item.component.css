@@ -109,3 +109,17 @@ h2 {
 .tag.location {
   background-color: #219ebc; /* bleu moyen */
 }
+
+.job-date {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+  font-style: italic;
+}
+
+.job-company {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+  font-style: italic;
+}

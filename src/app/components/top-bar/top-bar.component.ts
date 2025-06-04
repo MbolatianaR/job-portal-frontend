@@ -19,7 +19,16 @@ export class TopBarComponent implements OnInit {
   selectedType = '';
   selectedLocation = '';
 
-  types = ['CDI', 'CDD', 'Stage', 'Freelance'];
+  types = [
+  "CDI",
+  "CDD",
+  "Stage",
+  "Freelance",
+  "Temps partiel",
+  "Intérim",
+  "Apprentissage",
+  "Alternance"];
+  
   locations = ['Paris', 'Lyon', 'Marseille', 'Remote'];
 
   isLoggedIn = false;
