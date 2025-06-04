@@ -3,7 +3,7 @@ import { MOCK_USERS } from './users';
 
 export const MOCK_JOBS: Job[] = [
   {
-    id: 1,
+    id: "1",
     title: 'Développeur Angular',
     description: 'Développement d\'applications front-end en Angular.',
     location: 'Paris',
@@ -16,7 +16,7 @@ export const MOCK_JOBS: Job[] = [
     createdAt: '2025-06-01T09:00:00Z'
   },
   {
-    id: 2,
+    id: "2",
     title: 'Analyste financier',
     description: 'Analyse des données financières et reporting.',
     location: 'Lyon',
@@ -29,7 +29,7 @@ export const MOCK_JOBS: Job[] = [
     createdAt: '2025-05-15T10:30:00Z'
   },
   {
-    id: 3,
+    id: "3",
     title: 'Ingénieur énergie renouvelable',
     description: 'Conception et optimisation des systèmes d\'énergie verte.',
     location: 'Marseille',

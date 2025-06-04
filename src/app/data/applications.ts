@@ -4,7 +4,7 @@ import { MOCK_JOBS } from './jobs';
 
 export const MOCK_APPLICATIONS: Application[] = [
   {
-    id: 1,
+    id: "1",
     user: MOCK_USERS[0], // Alice (candidate)
     job: MOCK_JOBS[0],   // Développeur Angular
     skills: 'Angular, TypeScript',
@@ -15,7 +15,7 @@ export const MOCK_APPLICATIONS: Application[] = [
     updatedAt: '2025-06-02T14:00:00Z'
   },
   {
-    id: 2,
+    id: "2",
     user: MOCK_USERS[2], // Clara (candidate)
     job: MOCK_JOBS[1],   // Analyste financier
     skills: 'Excel, Power BI',
@@ -26,7 +26,7 @@ export const MOCK_APPLICATIONS: Application[] = [
     updatedAt: '2025-06-10T10:00:00Z'
   },
   {
-    id: 3,
+    id: "3",
     user: MOCK_USERS[0], // Alice (candidate)
     job: MOCK_JOBS[2],   // Ingénieur énergie renouvelable
     skills: 'Analyse énergétique, Matlab',

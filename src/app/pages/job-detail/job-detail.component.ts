@@ -15,7 +15,10 @@ export class JobDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+  const id = this.route.snapshot.paramMap.get('id'); // id est string ou null
+  if (id) {
     this.job = MOCK_JOBS.find(j => j.id === id);
   }
+}
+
 }

@@ -30,12 +30,17 @@ export class JobApplyComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    const jobId = Number(this.route.snapshot.paramMap.get('id'));
+ngOnInit(): void {
+  const jobId = this.route.snapshot.paramMap.get('id'); // récupère un string ou null
+  if (jobId) {
     this.job = MOCK_JOBS.find(j => j.id === jobId);
     if (!this.job) {
       console.warn('Offre introuvable pour id:', jobId);
     }
+  } else {
+    console.warn('Aucun id de job fourni dans l’URL');
+  }
+
   }
 
   onSubmit(): void {
