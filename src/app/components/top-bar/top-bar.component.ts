@@ -35,6 +35,7 @@ export class TopBarComponent implements OnInit {
       this.isLoggedIn = loggedIn;
       if (loggedIn) {
         this.userRole = this.authService.getUserRole();
+        console.log('User role:', this.userRole);
       } else {
         this.userRole = null;
       }
@@ -71,6 +72,11 @@ export class TopBarComponent implements OnInit {
   }
 
   goToCandidature() {
-    this.router.navigate(['applications']);
+    this.router.navigate(['/my-applications']);  // bien mettre /my-applications ici
   }
+
+  goToManageJobs() {
+    this.router.navigate(['/manage-jobs']);  // bien mettre /my-applications ici
+  }
+
 }

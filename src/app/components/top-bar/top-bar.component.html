@@ -44,6 +44,12 @@
         (click)="goToCandidature()"
       >Mes candidatures</button>
 
+      <button
+        *ngIf="isLoggedIn && userRole?.toLowerCase() === 'recruiter'"
+        class="manage-jobs"
+        (click)="goToManageJobs()"
+      >Mes offres</button>
+
 
       <button
         *ngIf="isLoggedIn"

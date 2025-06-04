@@ -14,10 +14,10 @@ import { RoleGuard } from './guards/role.guard';
 const routes: Routes = [
   { path: '', component: JobListPageComponent },
   { path: 'detail/:id', component: JobDetailComponent },
-  { path: 'apply/:id', component: JobApplyComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'candidate' } },
-  { path: 'create', component: JobCreateComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'recruiter' } },
-  { path: 'my-applications', component: MyApplicationsComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'candidate' } },
-  { path: 'manage-jobs', component: ManageJobsComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'recruiter' } },
+  { path: 'apply/:id', component: JobApplyComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'CANDIDATE' } },
+  { path: 'create', component: JobCreateComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'RECRUITER' } },
+  { path: 'my-applications', component: MyApplicationsComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'CANDIDATE' }},
+  { path: 'manage-jobs', component: ManageJobsComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'RECRUITER' } },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '' }

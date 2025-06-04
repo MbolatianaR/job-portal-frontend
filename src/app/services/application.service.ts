@@ -15,7 +15,7 @@ export class ApplicationService {
   }
 
   getApplicationsByUser(userId: string): Observable<Application[]> {
-    return this.http.get<Application[]>(`${this.applicationsUrl}/user/${userId}`);
+    return this.http.get<Application[]>(`${this.applicationsUrl}/${userId}`);
   }
 
   

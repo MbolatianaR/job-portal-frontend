@@ -10,18 +10,22 @@ import { AuthService } from '../services/auth.service';
 export class RoleGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
-    const expectedRole = route.data['role'] as string;
+canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
+  const expectedRole = route.data['role'] as string;
+  console.log('Rôle attendu:', expectedRole);
 
-    return this.authService.isLoggedIn().pipe(
-      map(isLoggedIn => {
-        if (!isLoggedIn) return this.router.parseUrl('/login');
+  return this.authService.isLoggedIn().pipe(
+    map(isLoggedIn => {
+      console.log('Utilisateur connecté:', isLoggedIn);
+      if (!isLoggedIn) return this.router.parseUrl('/login');
 
-        const role = this.authService.getUserRole();
-        if (role === expectedRole) return true;
+      const role = this.authService.getUserRole();
+      console.log('Rôle utilisateur récupéré:', role);
 
-        return this.router.parseUrl('/'); // redirige accueil si rôle non autorisé
-      })
-    );
-  }
+      if (role === expectedRole) return true;
+
+      return this.router.parseUrl('/'); // redirection si rôle non autorisé
+    })
+  );
+}
 }

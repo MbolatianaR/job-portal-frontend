@@ -117,3 +117,20 @@
 .my-candidature:hover {
   background-color: #ffb703;
 }
+
+.manage-jobs {
+  background-color: #fb8500;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+
+.manage-jobs:hover {
+  background-color: #ffb703;
+}

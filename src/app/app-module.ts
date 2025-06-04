@@ -18,6 +18,8 @@ import { JobListPageComponent } from './pages/job-list-page/job-list-page.compon
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './pages/register/register.component';
+import { MyApplicationsComponent } from './pages/my-applications/my-applications.component';
+import { ManageJobsComponent } from './pages/manage-jobs/manage-jobs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,9 @@ import { RegisterComponent } from './pages/register/register.component';
     TopBarComponent,
     LoginComponent,
     JobListPageComponent,
-    RegisterComponent
+    RegisterComponent,
+    MyApplicationsComponent,
+    ManageJobsComponent
   ],
   imports: [
     BrowserModule,

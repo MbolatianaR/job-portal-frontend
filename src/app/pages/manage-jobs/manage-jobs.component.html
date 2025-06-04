@@ -3,20 +3,18 @@
 
   <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
 
-  <div *ngIf="jobs.length === 0 && !errorMessage">
-    Vous n'avez encore créé aucune offre.
-  </div>
-
-  <ul *ngIf="jobs.length > 0" class="jobs-list">
-    <li *ngFor="let job of jobs" class="job-item">
+  <ul>
+    <li *ngFor="let job of jobs; trackBy: trackByJobId" class="job-item">
       <h3>{{ job.title }}</h3>
       <p>{{ job.description }}</p>
       <p><strong>Lieu :</strong> {{ job.location }}</p>
       <p><strong>Type :</strong> {{ job.type }}</p>
-      <div class="actions">
-       <!-- </button [routerLink]="['/detail', job.id]" class="btn secondary">Détails</button>
-        <button [routerLink]="['/manage-applicants', job.id]" class="btn primary">Voir candidats</button>-->
-      </div>
+      <p><strong>Niveau d'expérience :</strong> {{ job.experienceLevel }}</p>
+      <p><strong>Salaire :</strong> {{ job.salaryMin }} - {{ job.salaryMax }} €</p>
     </li>
   </ul>
+
+  <div *ngIf="jobs.length === 0 && !errorMessage">
+    Vous n'avez encore créé aucune offre.
+  </div>
 </div>

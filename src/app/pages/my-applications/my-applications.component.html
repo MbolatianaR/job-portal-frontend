@@ -9,11 +9,14 @@
 
   <ul *ngIf="applications.length > 0" class="applications-list">
     <li *ngFor="let app of applications" class="application-item">
-      <h3>{{ app.job.title }}</h3>
-      <p>Status : <strong>{{ app.status || 'En attente' }}</strong></p>
-      <!--<p>Date de candidature : {{ convertToDate(app.appliedAt) | date:'dd/MM/yyyy' }}</p>-->
-      <p>Compétences : {{ app.skills }}</p>
-      <p>Expériences : {{ app.experiences }}</p>
+      <h3>{{ app.job.title || 'Titre non disponible' }}</h3>
+      <p><strong>Description :</strong> {{ app.job.description }}</p>
+      <p><strong>Lieu :</strong> {{ app.job.location }}</p>
+      <p><strong>Type :</strong> {{ app.job.type }}</p>
+      <p><strong>Niveau d'expérience :</strong> {{ app.job.experienceLevel }}</p>
+
+      <p><strong>Compétences :</strong> {{ app.skills }}</p>
+      <p><strong>Expériences :</strong> {{ app.experiences }}</p>
     </li>
   </ul>
 </div>

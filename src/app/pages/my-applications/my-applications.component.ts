@@ -7,7 +7,7 @@ import { ApplicationService } from '../../services/application.service';
   selector: 'app-my-applications',
   templateUrl: './my-applications.component.html',
   styleUrls: ['./my-applications.component.css'],
-  standalone : false
+  standalone: false
 })
 export class MyApplicationsComponent implements OnInit {
   applications: Application[] = [];
@@ -20,9 +20,12 @@ export class MyApplicationsComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = this.authService.getUserId();
+    console.log('ID utilisateur:', userId);
+
     if (userId) {
       this.applicationService.getApplicationsByUser(userId).subscribe({
         next: (data) => {
+          console.log('Données reçues:', data);
           this.applications = data;
         },
         error: (err) => {
@@ -34,7 +37,4 @@ export class MyApplicationsComponent implements OnInit {
       this.errorMessage = "Utilisateur non identifié.";
     }
   }
-  convertToDate(dateString: string): Date {
-  return new Date(dateString);
-}
 }

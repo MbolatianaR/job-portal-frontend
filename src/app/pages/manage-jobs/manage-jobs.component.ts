@@ -7,7 +7,7 @@ import { JobService } from '../../services/job.service';
   selector: 'app-manage-jobs',
   templateUrl: './manage-jobs.component.html',
   styleUrls: ['./manage-jobs.component.css'],
-  standalone : false
+  standalone: false
 })
 export class ManageJobsComponent implements OnInit {
   jobs: Job[] = [];
@@ -34,4 +34,12 @@ export class ManageJobsComponent implements OnInit {
       this.errorMessage = "Utilisateur non identifié.";
     }
   }
+
+  trackByJobId(index: number, job: Job): string {
+    if (!job.id) {
+      throw new Error('Job id is undefined');
+    }
+    return job.id;
+  }
+
 }

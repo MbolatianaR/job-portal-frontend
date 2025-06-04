@@ -6,7 +6,7 @@ import { environment } from '../pages/environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
-  //private apiUrl = 'http://localhost:8080/api/jobs';
+  
   private apiUrl = `${environment.apiUrl}v1/jobs`;
   constructor(private http: HttpClient) {}
 
@@ -25,7 +25,6 @@ export class JobService {
   getJobsByRecruiter(recruiterId: string): Observable<Job[]> {
   return this.http.get<Job[]>(`${this.apiUrl}/recruiter/${recruiterId}`);
   }
-
 
 
  applyForJob(jobId: string, applicationData: any): Observable<any> {
