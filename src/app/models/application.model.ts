@@ -7,6 +7,7 @@ export interface Application {
   job: Job;
   skills?: string;
   experiences?: string;
+  cover_letter?: string;
   appliedAt?: string;    // ISO date string
   status?: 'en_cours' | 'acceptée' | 'refusée';
   createdAt?: string;

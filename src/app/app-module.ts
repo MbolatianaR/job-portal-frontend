@@ -6,6 +6,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
 
 import { JobListComponent } from './pages/job-list/job-list.component';
 import { JobDetailComponent } from './pages/job-detail/job-detail.component';
@@ -37,6 +38,7 @@ import { RegisterComponent } from './pages/register/register.component';
     RouterModule,
     AppRoutingModule,
     FormsModule,
+    CommonModule, 
     HttpClientModule
   ],
   bootstrap: [AppComponent]

@@ -34,4 +34,7 @@ export class MyApplicationsComponent implements OnInit {
       this.errorMessage = "Utilisateur non identifié.";
     }
   }
+  convertToDate(dateString: string): Date {
+  return new Date(dateString);
+}
 }

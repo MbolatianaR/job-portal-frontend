@@ -7,6 +7,7 @@ export const MOCK_USERS: User[] = [
     lastName: 'Durand',
     email: 'alice.durand@example.com',
     phone: '0612345678',
+    password : "1234",
     role: 'candidate'
   },
   {
@@ -15,6 +16,7 @@ export const MOCK_USERS: User[] = [
     lastName: 'Martin',
     email: 'bob.martin@example.com',
     phone: '0698765432',
+    password : "1234",
     role: 'recruiter'
   },
   {
@@ -23,6 +25,7 @@ export const MOCK_USERS: User[] = [
     lastName: 'Lemoine',
     email: 'clara.lemoine@example.com',
     phone: '0687654321',
+    password : "1234",
     role: 'candidate'
   }
 ];
