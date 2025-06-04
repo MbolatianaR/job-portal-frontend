@@ -48,6 +48,8 @@
   transition: background-color 0.3s;
 }
 
+
+
 .create-button:hover {
   background-color: #ffb703;
 }
@@ -99,4 +101,19 @@
 
 .btn-logout:hover {
   background-color: #023047;
+}
+
+.my-candidature{
+  background-color: #fb8500;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.my-candidature:hover {
+  background-color: #ffb703;
 }

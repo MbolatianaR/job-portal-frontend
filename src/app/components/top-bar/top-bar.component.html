@@ -39,6 +39,13 @@
       >+ Créer une offre</button>
 
       <button
+        *ngIf="isLoggedIn && userRole?.toLowerCase() === 'candidate'"
+        class="my-candidature"
+        (click)="goToCandidature()"
+      >Mes candidatures</button>
+
+
+      <button
         *ngIf="isLoggedIn"
         class="btn-logout"
         (click)="logout()"
