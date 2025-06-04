@@ -20,15 +20,9 @@ export class TopBarComponent implements OnInit {
   selectedLocation = '';
 
   types = [
-  "CDI",
-  "CDD",
-  "Stage",
-  "Freelance",
-  "Temps partiel",
-  "Intérim",
-  "Apprentissage",
-  "Alternance"];
-  
+    "CDI", "CDD", "Stage", "Freelance", "Temps partiel", "Intérim", "Apprentissage", "Alternance"
+  ];
+
   locations = ['Paris', 'Lyon', 'Marseille', 'Remote'];
 
   isLoggedIn = false;
@@ -56,7 +50,11 @@ export class TopBarComponent implements OnInit {
   }
 
   goToCreate() {
-    this.router.navigate(['/create']);
+    if (this.userRole === 'RECRUITER') {
+      this.router.navigate(['/create']);
+    } else {
+      alert('Seuls les recruteurs peuvent créer des offres.');
+    }
   }
 
   goToLogin() {
