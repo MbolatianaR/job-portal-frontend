@@ -1,4 +1,4 @@
-import { Application } from '../models/application.model';
+/*import { Application } from '../models/application.model';
 import { MOCK_USERS } from './users';
 import { MOCK_JOBS } from './jobs';
 
@@ -37,3 +37,4 @@ export const MOCK_APPLICATIONS: Application[] = [
     createdAt: '2025-06-12T11:00:00Z'
   }
 ];
+*/

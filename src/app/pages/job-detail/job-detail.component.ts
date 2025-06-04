@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Job } from '../../models/job.model';
-import { MOCK_JOBS } from '../../data/jobs';
+import { JobService } from '../../services/job.service'; // Import du service
 
 @Component({
   selector: 'app-job-detail',
@@ -12,13 +12,14 @@ import { MOCK_JOBS } from '../../data/jobs';
 export class JobDetailComponent implements OnInit {
   job: Job | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private jobService: JobService) {}
 
   ngOnInit(): void {
-  const id = this.route.snapshot.paramMap.get('id'); // id est string ou null
-  if (id) {
-    this.job = MOCK_JOBS.find(j => j.id === id);
+    const id = this.route.snapshot.paramMap.get('id'); // ID récupéré depuis l'URL
+    if (id) {
+      this.jobService.getJobById(Number(id)).subscribe(job => {
+        this.job = job;
+      });
+    }
   }
-}
-
 }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { JobService } from '../../services/job.service';
 import { Job } from '../../models/job.model';
-import { MOCK_JOBS } from '../../data/jobs';
 
 @Component({
   selector: 'app-job-list-page',
@@ -8,9 +8,18 @@ import { MOCK_JOBS } from '../../data/jobs';
   styleUrls: ['./job-list-page.component.css'],
   standalone : false
 })
-export class JobListPageComponent {
-  allJobs: Job[] = MOCK_JOBS;
-  filteredJobs: Job[] = MOCK_JOBS;
+export class JobListPageComponent implements OnInit {
+  allJobs: Job[] = [];
+  filteredJobs: Job[] = [];
+
+  constructor(private jobService: JobService) {}
+
+  ngOnInit() {
+    this.jobService.getAllJobs().subscribe(jobs => {
+      this.allJobs = jobs;
+      this.filteredJobs = jobs;
+    });
+  }
 
   applyFilters(filters: { keyword: string; type: string; location: string }) {
     const { keyword, type, location } = filters;

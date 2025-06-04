@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Job } from '../../models/job.model';
-import { MOCK_JOBS } from '../../data/jobs';
+import { JobService } from '../../services/job.service'; // Import du service
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
   selector: 'app-job-apply',
   templateUrl: './job-apply.component.html',
   styleUrls: ['./job-apply.component.css'],
-  standalone: false
+  standalone : false
 })
 export class JobApplyComponent implements OnInit {
   job?: Job;
@@ -17,6 +17,7 @@ export class JobApplyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private jobService: JobService, // Ajout du service
     private fb: FormBuilder,
     private location: Location
   ) {
@@ -30,30 +31,30 @@ export class JobApplyComponent implements OnInit {
     });
   }
 
-ngOnInit(): void {
-  const jobId = this.route.snapshot.paramMap.get('id'); // récupère un string ou null
-  if (jobId) {
-    this.job = MOCK_JOBS.find(j => j.id === jobId);
-    if (!this.job) {
-      console.warn('Offre introuvable pour id:', jobId);
+  ngOnInit(): void {
+    const jobId = this.route.snapshot.paramMap.get('id');
+    if (jobId) {
+      this.jobService.getJobById(Number(jobId)).subscribe(job => {
+        this.job = job;
+      });
     }
-  } else {
-    console.warn('Aucun id de job fourni dans l’URL');
-  }
-
   }
 
   onSubmit(): void {
     if (this.applicationForm.valid) {
-      // Ici tu enverras la candidature au backend
       const applicationData = {
         ...this.applicationForm.value,
         jobId: this.job?.id
       };
+
       console.log('Candidature envoyée :', applicationData);
-      // Réinitialiser formulaire si besoin
+
+      // 🔹 Ajoute ici l'appel API pour envoyer la candidature :
+      // this.jobService.applyForJob(applicationData).subscribe(response => {
+      //   console.log('Réponse du backend :', response);
+      // });
+
       this.applicationForm.reset();
-      // Eventuellement un message ou redirection
     }
   }
 

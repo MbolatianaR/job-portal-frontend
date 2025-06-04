@@ -21,4 +21,8 @@ export class JobService {
   getJobsByRecruiter(recruiterId: string): Observable<Job[]> {
   return this.http.get<Job[]>(`${this.apiUrl}/recruiter/${recruiterId}`);
   }
+
+  applyForJob(applicationData: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/apply`, applicationData);
+}
 }

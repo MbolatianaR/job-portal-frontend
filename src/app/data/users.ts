@@ -1,4 +1,4 @@
-import { User } from '../models/user.model';
+/*import { User } from '../models/user.model';
 
 export const MOCK_USERS: User[] = [
   {
@@ -29,3 +29,4 @@ export const MOCK_USERS: User[] = [
     role: 'candidate'
   }
 ];
+*/

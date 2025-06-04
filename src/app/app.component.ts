@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Job } from './models/job.model';
-import { MOCK_JOBS } from './data/jobs'; // adapte le chemin si besoin
+import { JobService } from './services/job.service'; // Import du service
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,18 @@ import { MOCK_JOBS } from './data/jobs'; // adapte le chemin si besoin
   styleUrls: ['./app.component.css'],
   standalone : false
 })
-export class AppComponent {
-  allJobs: Job[] = MOCK_JOBS;
-  filteredJobs: Job[] = MOCK_JOBS;
+export class AppComponent implements OnInit {
+  allJobs: Job[] = [];
+  filteredJobs: Job[] = [];
+
+  constructor(private jobService: JobService) {}
+
+  ngOnInit(): void {
+    this.jobService.getAllJobs().subscribe(jobs => {
+      this.allJobs = jobs;
+      this.filteredJobs = jobs; // Initialisation des jobs filtrés avec toutes les offres
+    });
+  }
 
   applyFilters(filters: { keyword: string; type: string; location: string }) {
     const keyword = filters.keyword?.toLowerCase() || '';

@@ -1,4 +1,4 @@
-import { Job } from '../models/job.model';
+/*import { Job } from '../models/job.model';
 import { MOCK_USERS } from './users';
 
 export const MOCK_JOBS: Job[] = [
@@ -42,3 +42,4 @@ export const MOCK_JOBS: Job[] = [
     createdAt: '2025-06-10T08:00:00Z'
   }
 ];
+*/
