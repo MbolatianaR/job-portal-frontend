@@ -11,8 +11,7 @@ export const MOCK_APPLICATIONS: Application[] = [
     experiences: 'Stage de 6 mois en développement web',
     appliedAt: '2025-06-02T14:00:00Z',
     status: 'en_cours',
-    createdAt: '2025-06-02T14:00:00Z',
-    updatedAt: '2025-06-02T14:00:00Z'
+    createdAt: '2025-06-02T14:00:00Z'
   },
   {
     id: "2",
@@ -22,8 +21,7 @@ export const MOCK_APPLICATIONS: Application[] = [
     experiences: 'Alternance 1 an en finance',
     appliedAt: '2025-06-05T09:30:00Z',
     status: 'refusée',
-    createdAt: '2025-06-05T09:30:00Z',
-    updatedAt: '2025-06-10T10:00:00Z'
+    createdAt: '2025-06-05T09:30:00Z'
   },
   {
     id: "3",
@@ -33,7 +31,6 @@ export const MOCK_APPLICATIONS: Application[] = [
     experiences: 'Projet universitaire sur l\'énergie solaire',
     appliedAt: '2025-06-12T11:00:00Z',
     status: 'acceptée',
-    createdAt: '2025-06-12T11:00:00Z',
-    updatedAt: '2025-06-15T08:00:00Z'
+    createdAt: '2025-06-12T11:00:00Z'
   }
 ];

@@ -10,5 +10,4 @@ export interface Application {
   appliedAt?: string;    // ISO date string
   status?: 'en_cours' | 'acceptée' | 'refusée';
   createdAt?: string;
-  updatedAt?: string;
 }
