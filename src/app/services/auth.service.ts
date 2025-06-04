@@ -12,7 +12,7 @@ import { environment } from '../pages/environment/environment';
 })
 export class AuthService {
   //private apiUrl = 'http://localhost:8080/api/auth'; // adapte à ton backend
-  private apiUrl = `${environment.apiUrl}/api/auth`;
+  private apiUrl = `${environment.apiUrl}auth`;
   private loggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
   constructor(private http: HttpClient) {}
