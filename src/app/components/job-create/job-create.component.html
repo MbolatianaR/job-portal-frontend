@@ -6,6 +6,12 @@
 <div *ngIf="jobForm.get('title')?.invalid && jobForm.get('title')?.touched" class="error-msg">
       Le titre est requis.
 </div>
+
+<input formControlName="company" placeholder="Nom de la société" required />
+<div *ngIf="jobForm.get('company')?.invalid && jobForm.get('company')?.touched" class="error-msg">
+  Le nom de la société est requis.
+</div>
+
  
     <textarea formControlName="description" placeholder="Description du poste" required></textarea>
 <div *ngIf="jobForm.get('description')?.invalid && jobForm.get('description')?.touched" class="error-msg">

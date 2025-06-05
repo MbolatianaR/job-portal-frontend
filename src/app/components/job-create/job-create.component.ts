@@ -39,18 +39,16 @@ export class JobCreateComponent implements OnInit {
   ngOnInit(): void {
 
     this.jobForm = this.fb.group({
-
       title: ['', Validators.required],
-
       description: ['', Validators.required],
-
       location: ['', Validators.required],
-
+      company: ['', Validators.required],
       type: ['CDI', Validators.required],
       salaryMin: [0, Validators.required],
       salaryMax: [0, Validators.required],
       experienceLevel: ['', Validators.required]
     });
+
  
     this.recruiterId = this.authService.getUserId(); // 🔐 récupère l’ID du recruteur connecté
   }

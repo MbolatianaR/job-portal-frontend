@@ -84,3 +84,17 @@ select:focus {
   outline: none;
 }
 
+input[formControlName="company"] {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #f8f9fa;
+}
+
+input[formControlName="company"]:focus {
+  outline: none;
+  border-color: #219ebc;
+  background-color: #ffffff;
+}
