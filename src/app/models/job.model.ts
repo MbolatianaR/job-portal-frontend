@@ -10,6 +10,7 @@ export interface Job {
   salaryMin?: number;
   salaryMax?: number;
   experienceLevel?: string;
+  postedDate: string;
   recruiter?: User;      // recruteur qui a posté l'offre
-  createdAt?: string;    // ISO date string
+  //createdAt?: string;    // ISO date string
 }

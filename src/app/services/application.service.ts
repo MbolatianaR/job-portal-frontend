@@ -15,8 +15,12 @@ export class ApplicationService {
   }
 
   getApplicationsByUser(userId: string): Observable<Application[]> {
-    return this.http.get<Application[]>(`${this.applicationsUrl}/${userId}`);
+    return this.http.get<Application[]>(`${this.applicationsUrl}/user/${userId}`);
   }
+
+  applyForJob(jobId: string, applicationData: any): Observable<any> {
+  return this.http.post(`${this.applicationsUrl}/job/${jobId}`, applicationData);
+}
 
   
 }

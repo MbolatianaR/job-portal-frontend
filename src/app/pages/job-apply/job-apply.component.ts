@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobService } from '../../services/job.service';
 import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
+import { ApplicationService } from '../../services/application.service';
  
 @Component({
   selector: 'app-job-apply',
@@ -19,6 +20,7 @@ export class JobApplyComponent implements OnInit {
   errorMessage = '';
  
   constructor(
+    private applicationService: ApplicationService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private jobService: JobService,
@@ -43,7 +45,7 @@ export class JobApplyComponent implements OnInit {
         ...this.applicationForm.value
       };
  
-      this.jobService.applyForJob(this.jobId, applicationData).subscribe({
+      this.applicationService.applyForJob(this.jobId, applicationData).subscribe({
         next: () => {
           this.successMessage = 'Candidature envoyée avec succès !';
           this.errorMessage = '';

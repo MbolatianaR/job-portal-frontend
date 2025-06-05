@@ -3,7 +3,7 @@
   <h2>{{ job.title }}</h2>
   <span class="company-badge" *ngIf="job.company">{{ job.company }}</span>
 </div>
-<small class="job-date">Publié le : {{ job.createdAt | date:'dd/MM/yyyy' }}</small>
+<small class="job-date">Publié le : {{ job.postedDate | date:'dd/MM/yyyy' }}</small>
 
   <p class="job-desc">{{ job.description }}</p>
 

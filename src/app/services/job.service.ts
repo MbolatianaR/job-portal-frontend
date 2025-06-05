@@ -27,7 +27,5 @@ export class JobService {
   }
 
 
- applyForJob(jobId: string, applicationData: any): Observable<any> {
-  return this.http.post(`${this.apiUrl}/apply/${jobId}`, applicationData);
-}
+
 }
