@@ -26,6 +26,10 @@ export class JobService {
   return this.http.get<Job[]>(`${this.apiUrl}/recruiter/${recruiterId}`);
   }
 
+  deleteJob(jobId: string): Observable<void> {
+  return this.http.delete<void>(`${this.apiUrl}/${jobId}`);
+}
+
 
 
 }

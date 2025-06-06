@@ -12,34 +12,56 @@ import { JobService } from '../../services/job.service';
 export class ManageJobsComponent implements OnInit {
   jobs: Job[] = [];
   errorMessage: string | null = null;
+  userRole: string | null = null;
 
   constructor(
     private authService: AuthService,
     private jobService: JobService
   ) {}
 
-  ngOnInit(): void {
-    const recruiterId = this.authService.getUserId();
-    if (recruiterId) {
-      this.jobService.getJobsByRecruiter(recruiterId).subscribe({
-        next: (data) => {
-          this.jobs = data;
+    ngOnInit(): void {
+      this.userRole = this.authService.getUserRole()?.toUpperCase() || null;
+      console.log('Rôle utilisateur:', this.userRole);
+
+      const recruiterId = this.authService.getUserId();
+      if (recruiterId) {
+        this.loadJobs(recruiterId);
+      } else {
+        this.errorMessage = "Utilisateur non identifié.";
+      }
+    }
+
+
+  loadJobs(recruiterId: string): void {
+    this.jobService.getJobsByRecruiter(recruiterId).subscribe({
+      next: (data) => {
+        this.jobs = data;
+      },
+      error: (err) => {
+        this.errorMessage = "Erreur lors du chargement des offres.";
+        console.error(err);
+      }
+    });
+  }
+
+  deleteJob(jobId?: string): void {
+    if (!jobId) return;
+    if (confirm("Voulez-vous vraiment supprimer cette offre ?")) {
+      this.jobService.deleteJob(jobId).subscribe({
+        next: () => {
+          // Retirer le job de la liste locale sans recharger tout
+          this.jobs = this.jobs.filter(job => job.id !== jobId);
         },
-        error: (err) => {
-          this.errorMessage = "Erreur lors du chargement des offres.";
+        error: (err: any) => {
+          this.errorMessage = "Erreur lors de la suppression de l'offre.";
           console.error(err);
         }
       });
-    } else {
-      this.errorMessage = "Utilisateur non identifié.";
     }
   }
 
   trackByJobId(index: number, job: Job): string {
-    if (!job.id) {
-      throw new Error('Job id is undefined');
-    }
+    if (!job.id) throw new Error('Job id is undefined');
     return job.id;
   }
-
 }

@@ -3,7 +3,7 @@
 
   <div *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</div>
 
-  <ul>
+  <ul class="jobs-list">
     <li *ngFor="let job of jobs; trackBy: trackByJobId" class="job-item">
       <h3>{{ job.title }}</h3>
       <p>{{ job.description }}</p>
@@ -11,6 +11,10 @@
       <p><strong>Type :</strong> {{ job.type }}</p>
       <p><strong>Niveau d'expérience :</strong> {{ job.experienceLevel }}</p>
       <p><strong>Salaire :</strong> {{ job.salaryMin }} - {{ job.salaryMax }} €</p>
+
+      <div class="actions" *ngIf="userRole?.toUpperCase() === 'RECRUITER'">
+        <button class="btn secondary" (click)="deleteJob(job.id)">Supprimer</button>
+      </div>
     </li>
   </ul>
 
